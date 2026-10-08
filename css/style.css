@@ -551,7 +551,7 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
-  padding-bottom: 84px;
+  padding-bottom: 64px;
 }
 .hero .wrap { position: relative; z-index: 1; }
 .hero h1 { text-shadow: 0 3px 10px rgba(0,0,0,0.25); }
@@ -571,25 +571,6 @@ body {
   background-size: 130px, 100px, 90px, 70px;
 }
 
-/* Rij blokjes onderaan hero / boven footer / onder review-hero */
-.hero::after,
-.review-hero::after,
-.site-footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 22px;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='22' viewBox='0 0 200 22'%3E%3Crect x='0' y='8' width='50' height='14' fill='%23d6432b'/%3E%3Ccircle cx='13' cy='5' r='4.5' fill='%23d6432b'/%3E%3Ccircle cx='37' cy='5' r='4.5' fill='%23d6432b'/%3E%3Crect x='50' y='8' width='50' height='14' fill='%23ffd23f'/%3E%3Ccircle cx='63' cy='5' r='4.5' fill='%23ffd23f'/%3E%3Ccircle cx='87' cy='5' r='4.5' fill='%23ffd23f'/%3E%3Crect x='100' y='8' width='50' height='14' fill='%231d6fd1'/%3E%3Ccircle cx='113' cy='5' r='4.5' fill='%231d6fd1'/%3E%3Ccircle cx='137' cy='5' r='4.5' fill='%231d6fd1'/%3E%3Crect x='150' y='8' width='50' height='14' fill='%232e9e5b'/%3E%3Ccircle cx='163' cy='5' r='4.5' fill='%232e9e5b'/%3E%3Ccircle cx='187' cy='5' r='4.5' fill='%232e9e5b'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-size: 200px 22px;
-}
-.hero::after { bottom: 0; }
-.review-hero { position: relative; padding-bottom: 54px; }
-.review-hero::after { bottom: 0; }
-.site-footer { position: relative; padding-top: 58px; }
-.site-footer::before { top: 0; }
 
 /* Statistieken als blokjes */
 .stats-bar .stat {
@@ -632,6 +613,5 @@ body {
 .btn:active { transform: translateY(2px); box-shadow: none; }
 
 @media (max-width: 680px) {
-  .hero { padding-bottom: 76px; }
   .hero::before { opacity: 0.5; background-size: 84px, 70px, 60px, 50px; background-position: 100% 0%, 98% 84%, 74% 97%, 72% 0%; }
 }
