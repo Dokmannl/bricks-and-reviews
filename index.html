@@ -50,9 +50,9 @@ function handleImgError(img) {
     <h1>Mijn LEGO-bouwsels op een rij</h1>
     <p>Geen ellenlange reviews, gewoon een eerlijk overzicht van wat ik zelf gebouwd heb: specs, prijs en koopadvies.</p>
     <div class="stats-bar">
-      <div class="stat"><strong>65</strong><span>sets gebouwd</span></div>
-      <div class="stat"><strong>24.062</strong><span>stukjes verwerkt</span></div>
-      <div class="stat"><strong>&euro;2.329+</strong><span>aan LEGO gebouwd</span></div>
+      <div class="stat"><strong>66</strong><span>sets gebouwd</span></div>
+      <div class="stat"><strong>24.855</strong><span>stukjes verwerkt</span></div>
+      <div class="stat"><strong>&euro;2.404+</strong><span>aan LEGO gebouwd</span></div>
     </div>
   </div>
 </section>
@@ -66,7 +66,7 @@ function handleImgError(img) {
       <input type="search" id="set-search" placeholder="Zoek op naam of setnummer...">
       <label for="theme-filter">Filter op type set:</label>
       <select id="theme-filter">
-        <option value="alle">Alle types (65)</option>
+        <option value="alle">Alle types (66)</option>
         <option value="Shell">Shell (10)</option>
         <option value="Minecraft">Minecraft (1)</option>
         <option value="Friends">Friends (29)</option>
@@ -76,13 +76,30 @@ function handleImgError(img) {
         <option value="Harry Potter">Harry Potter (3)</option>
         <option value="Speed Champions">Speed Champions (5)</option>
         <option value="Super Mario">Super Mario (1)</option>
-        <option value="Technic">Technic (3)</option>
+        <option value="Technic">Technic (4)</option>
         <option value="Icons">Icons (1)</option>
       </select>
     </div>
 
     <div class="grid" id="review-grid">
 
+      <article class="card" data-theme="Technic">
+        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42223">
+          <img src="images/42223.jpg" alt="LEGO Technic 1966 Ford GT40 MKII racewagen (42223)" loading="lazy" onerror="handleImgError(this)">
+        </div>
+        <div class="card-body">
+          <h3><a href="reviews/1966-ford-gt40-mkii-racewagen-42223.html">1966 Ford GT40 MKII racewagen (42223)</a></h3>
+          <div class="card-meta">
+            <span class="tag">Technic</span>
+            <span class="tag">793 stukjes</span>
+            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p>LEGO Technic-model van de 1966 Ford GT40 MKII racewagen met besturing via een knop op het dak, openende deuren en een motorkap die opent via een hendel in de cabine.</p>
+          <div class="card-cta">
+            <a href="reviews/1966-ford-gt40-mkii-racewagen-42223.html">Lees review &rarr;</a>
+          </div>
+        </div>
+      </article>
       <article class="card" data-theme="Harry Potter">
         <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#740001 0%,#d3a625 100%)" data-fallback-text="76466">
           <img src="images/76466.jpg" alt="LEGO Harry Potter Steen der Wijzen - Verzameleditie (76466)" loading="lazy" onerror="handleImgError(this)">
@@ -92,7 +109,7 @@ function handleImgError(img) {
           <div class="card-meta">
             <span class="tag">Harry Potter</span>
             <span class="tag">1571 stukjes</span>
-            <span class="tag">Nog te beoordelen</span>
+            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           </div>
           <p>LEGO Harry Potter verzameleditie ter ere van 25 jaar Steen der Wijzen, met een Hedwig-figuur, Harry's koffer met filmscene, een toverschaakbord en 3 minifiguren.</p>
           <div class="card-cta">
@@ -1188,6 +1205,7 @@ function handleImgError(img) {
           </div>
         </div>
       </article>
+
 
 
 
