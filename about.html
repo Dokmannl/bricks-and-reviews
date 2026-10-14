@@ -1,46 +1,53 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Over mij — BrickPassie</title>
-<meta name="description" content="Over BrickPassie: waarom ik LEGO sets bouw en reviewt vanuit eigen ervaring.">
+<title>Over mij &mdash; BrickPassie</title>
+<meta name="description" content="Over BrickPassie: waarom ik LEGO sets bouw.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/bricolage-grotesque-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Over mij — BrickPassie">
-<meta property="og:description" content="Over BrickPassie: waarom ik LEGO sets bouw en reviewt vanuit eigen ervaring.">
+<meta property="og:description" content="Over BrickPassie: waarom ik LEGO sets bouw.">
 <meta property="og:image" content="https://brickpassie.nl/images/logo-icon.svg">
 <meta property="og:url" content="https://brickpassie.nl/about.html">
 <meta name="twitter:card" content="summary">
+
+<script>
+function handleImgError(img) {
+  if (!img.dataset.triedPng) {
+    img.dataset.triedPng = "1";
+    img.src = img.src.replace(/\.jpg$/i, ".png");
+    return;
+  }
+  var wrap = img.parentElement;
+  img.remove();
+  wrap.style.background = wrap.dataset.fallbackColor || "#999";
+  var span = document.createElement("span");
+  span.textContent = wrap.dataset.fallbackText || "";
+  wrap.appendChild(span);
+}
+</script>
 <script data-goatcounter="https://brick77.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-
 <header class="site-header">
-  <div class="wrap">
-    <a href="index.html" class="logo"><img src="images/logo-icon.svg" class="logo-icon" alt="">Brick<span>Passie</span></a>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">Over mij</a>
-      <a href="disclaimer.html">Disclaimer</a>
-    </nav>
-    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
-  </div>
+  <a href="index.html" class="logo"><img src="images/logo-icon.svg" class="logo-icon" alt="">brickpassie<span class="dot">.</span></a>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">Over mij</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="index.html#sets" class="nav-cta">Zoek een set</a>
+  </nav>
 </header>
 
-<section class="hero" style="padding:40px 0;">
-  <div class="wrap">
-    <h1>Over deze site</h1>
-    <p>Waarom ik LEGO sets bouw en erover schrijf.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap" style="max-width:720px;">
-    <p>
-      <!-- TODO: vervang dit door je eigen verhaal — wie ben je, sinds wanneer bouw je,
-           wat voor sets vind je leuk, en wat maakt jouw reviews anders? -->
+<main class="page">
+  <div class="sticker">Hoi!</div>
+  <h1>Over deze site</h1>
+  <p>
+      
       Ik bouw al jaren LEGO sets, van kleine sets tot de grootste display-modellen. Op deze site deel ik alleen
       sets die ik zelf daadwerkelijk gebouwd heb — geen doosteksten overgetypt, maar mijn eigen ervaring met de
       bouwvolgorde, de kwaliteit van het eindresultaat en of de prijs het waard is.
@@ -49,21 +56,17 @@
       Heb je een vraag over een set, of een tip voor een set die ik moet reviewen? Stuur gerust een bericht via
       <a href="mailto:info@brickpassie.nl">info@brickpassie.nl</a>.
     </p>
-  </div>
-</section>
-
+  <a class="btn btn-pink" href="index.html#sets">Bekijk de sets</a>
+</main>
 <footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-bol-banner">
-      <a href="https://partner.bol.com/click/click?p=2&amp;t=url&amp;s=1544332&amp;f=TXL&amp;url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DLego&amp;name=Bol" class="btn btn-bol" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij bol.com</a>
-      <a href="https://amzn.to/4xDA2oW" class="btn btn-amazon" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij Amazon</a>
-    </div>
-    <p>BrickPassie is een onafhankelijk fanproject en niet verbonden aan of gesponsord door The LEGO Group.
-    LEGO&reg; is een handelsmerk van de LEGO Group.</p>
-    <p>&copy; <span id="year"></span> BrickPassie</p>
+  <div class="footer-logo">brickpassie<span class="dot">.</span></div>
+  <div class="footer-banners">
+    <a href="https://partner.bol.com/click/click?p=2&amp;t=url&amp;s=1544332&amp;f=TXL&amp;url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DLego&amp;name=Bol" class="btn btn-bol" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij bol.com</a>
+    <a href="https://amzn.to/4xDA2oW" class="btn btn-amazon" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij Amazon</a>
   </div>
+  <p>BrickPassie is een onafhankelijk fanproject en niet verbonden aan of gesponsord door The LEGO Group. LEGO&reg; is een handelsmerk van de LEGO Group.</p>
+  <p>&copy; <span id="year"></span> BrickPassie</p>
 </footer>
-
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 <script src="js/main.js"></script>
 </body>

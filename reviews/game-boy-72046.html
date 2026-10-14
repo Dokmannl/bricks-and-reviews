@@ -6,6 +6,7 @@
 <title>LEGO Super Mario Game Boy (72046) review &mdash; BrickPassie</title>
 <meta name="description" content="Review van de LEGO Super Mario Game Boy (72046): Bouwbare replica op bijna 1:1-schaal van de originele Nintendo Game Boy, met werkende knoppen en verwisselbare 3D-schermen.">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preload" href="../fonts/bricolage-grotesque-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/style.css">
 <meta property="og:type" content="product">
 <meta property="og:title" content="LEGO Super Mario Game Boy (72046) review">
@@ -44,7 +45,6 @@ function handleImgError(img) {
   }
   var wrap = img.parentElement;
   img.remove();
-  wrap.classList.remove("card-thumb-photo", "review-thumb-photo");
   wrap.style.background = wrap.dataset.fallbackColor || "#999";
   var span = document.createElement("span");
   span.textContent = wrap.dataset.fallbackText || "";
@@ -54,74 +54,55 @@ function handleImgError(img) {
 <script data-goatcounter="https://brick77.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-
 <header class="site-header">
-  <div class="wrap">
-    <a href="../index.html" class="logo"><img src="../images/logo-icon.svg" class="logo-icon" alt="">Brick<span>Passie</span></a>
-    <nav class="main-nav">
-      <a href="../index.html">Home</a>
-      <a href="../about.html">Over mij</a>
-      <a href="../disclaimer.html">Disclaimer</a>
-    </nav>
-    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
-  </div>
+  <a href="../index.html" class="logo"><img src="../images/logo-icon.svg" class="logo-icon" alt="">brickpassie<span class="dot">.</span></a>
+  <nav class="main-nav">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">Over mij</a>
+    <a href="../disclaimer.html">Disclaimer</a>
+    <a href="../index.html#sets" class="nav-cta">Zoek een set</a>
+  </nav>
 </header>
 
-<section class="review-hero">
-  <div class="wrap">
-    <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Game Boy (72046)</div>
-    <div class="thumb-tabs">
-      <div class="tab-buttons">
-        <button class="active" onclick="showTab(this,'model-72046')">Model</button>
-        <button onclick="showTab(this,'doos-72046')">Doos</button>
+<main class="review">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Game Boy</div>
+  <div class="review-grid">
+    <div class="panel">
+      <div class="thumb-tabs">
+        <div class="tab-buttons">
+          <button class="active" onclick="showTab(this,'model-72046')">Model</button>
+          <button onclick="showTab(this,'doos-72046')">Doos</button>
+        </div>
+        <div class="tab-panel active photo-wrap" id="model-72046" data-fallback-color="linear-gradient(135deg,#e52521 0%,#049cd8 100%)" data-fallback-text="72046"><img src="../images/72046.png" alt="LEGO Super Mario Game Boy (72046)" loading="lazy" onerror="handleImgError(this)"></div>
+        <div class="tab-panel photo-wrap" id="doos-72046"><img src="../images/72046-Doos.png" alt="Doos LEGO Super Mario Game Boy (72046)" loading="lazy"></div>
       </div>
-      <div class="tab-panel active" id="model-72046"><img src="../images/72046.jpg" alt="LEGO Super Mario Game Boy (72046)" loading="lazy" onerror="handleImgError(this)"></div>
-      <div class="tab-panel" id="doos-72046"><img src="../images/72046-Doos.png" alt="Doos LEGO Super Mario Game Boy (72046)" loading="lazy"></div>
     </div>
-    <h1>LEGO Super Mario Game Boy (72046)</h1>
-    <div class="review-meta">
-      <span>&#128230; 421 stukjes</span>
-      <span class="tag">Super Mario</span>
-      <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-    </div>
-  </div>
-</section>
-
-<div class="wrap">
-  <div class="buy-box">
-    <div>
-      <div class="price">Richtprijs: &euro; 59,99</div>
-      <div style="color:var(--text-muted); font-size:0.85rem;">Prijzen wisselen, check de actuele prijs via onderstaande links.</div>
-    </div>
-    <div class="buttons">
+    <div class="review-info">
+      <div class="tags"><span class="pill pill-pink">Super Mario</span><span class="pill">Set 72046</span><span class="pill">421 stukjes</span></div>
+      <h1>Game Boy</h1>
+      <div class="stars-big" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="desc">Bouwbare replica op bijna 1:1-schaal van de originele Nintendo Game Boy, met werkende knoppen en verwisselbare 3D-schermen.</p>
+    <div class="buy-box">
+      <div class="buy-top"><span class="price">&euro; 59,99</span><span class="price-note">richtprijs, kan wisselen</span></div>
+    <div class="buy-buttons">
       <a href="https://partner.bol.com/click/click?p=2&amp;t=url&amp;s=1544332&amp;f=TXL&amp;url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Flego-game-boy-bouwpakket-voor-volwassenen-72046%2F9300000230767167%2F&amp;name=LEGO%20Game%20Boy%20Bouwpakket%20voor%20Volwassenen%20-%2072046" class="btn btn-bol" rel="sponsored nofollow" target="_blank">Bekijk bij bol.com</a>
       <a href="https://amzn.to/4hf09vY" class="btn btn-amazon" rel="sponsored nofollow" target="_blank">Bekijk bij Amazon</a>
-      <a href="https://www.lego.com/nl-nl/service/building-instructions/72046" class="btn btn-instructions" target="_blank">Bouwinstructies (PDF)</a>
+    </div>
+    <a class="instr" href="https://www.lego.com/nl-nl/service/building-instructions/72046" target="_blank">Bouwinstructies (PDF) &rarr;</a>
+    </div>
     </div>
   </div>
-
-  <article class="content">
-    <p>Bouwbare replica op bijna 1:1-schaal van de originele Nintendo Game Boy, met werkende knoppen en verwisselbare 3D-schermen.</p>
-  </article>
-
-  <div class="disclosure">
-    Deze pagina bevat affiliate links naar bol.com en/of Amazon. Als je via zo'n link iets koopt, ontvang ik mogelijk
-    een kleine commissie &mdash; zonder extra kosten voor jou. Zie de <a href="../disclaimer.html">disclaimer</a> voor meer info.
-  </div>
-</div>
-
+  <div class="disclosure">Deze pagina bevat affiliate links naar bol.com en/of Amazon. Als je via zo'n link iets koopt, ontvang ik mogelijk een kleine commissie &mdash; zonder extra kosten voor jou. Zie de <a href="../disclaimer.html">disclaimer</a> voor meer info.</div>
+</main>
 <footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-bol-banner">
-      <a href="https://partner.bol.com/click/click?p=2&amp;t=url&amp;s=1544332&amp;f=TXL&amp;url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DLego&amp;name=Bol" class="btn btn-bol" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij bol.com</a>
-      <a href="https://amzn.to/4xDA2oW" class="btn btn-amazon" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij Amazon</a>
-    </div>
-    <p>BrickPassie is een onafhankelijk fanproject en niet verbonden aan of gesponsord door The LEGO Group.
-    LEGO&reg; is een handelsmerk van de LEGO Group.</p>
-    <p>&copy; <span id="year"></span> BrickPassie</p>
+  <div class="footer-logo">brickpassie<span class="dot">.</span></div>
+  <div class="footer-banners">
+    <a href="https://partner.bol.com/click/click?p=2&amp;t=url&amp;s=1544332&amp;f=TXL&amp;url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DLego&amp;name=Bol" class="btn btn-bol" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij bol.com</a>
+    <a href="https://amzn.to/4xDA2oW" class="btn btn-amazon" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij Amazon</a>
   </div>
+  <p>BrickPassie is een onafhankelijk fanproject en niet verbonden aan of gesponsord door The LEGO Group. LEGO&reg; is een handelsmerk van de LEGO Group.</p>
+  <p>&copy; <span id="year"></span> BrickPassie</p>
 </footer>
-
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 <script src="../js/main.js"></script>
 </body>

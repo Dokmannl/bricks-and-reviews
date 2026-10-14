@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrickPassie — mijn LEGO-collectie op een rij</title>
+<title>BrickPassie &mdash; mijn LEGO-collectie op een rij</title>
 <meta name="description" content="Overzicht van LEGO-sets die ik zelf gebouwd heb: stukjes, prijs en waar je ze het voordeligst koopt.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/bricolage-grotesque-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BrickPassie — mijn LEGO-collectie op een rij">
@@ -13,6 +14,7 @@
 <meta property="og:image" content="https://brickpassie.nl/images/logo-icon.svg">
 <meta property="og:url" content="https://brickpassie.nl/index.html">
 <meta name="twitter:card" content="summary">
+
 <script>
 function handleImgError(img) {
   if (!img.dataset.triedPng) {
@@ -22,7 +24,6 @@ function handleImgError(img) {
   }
   var wrap = img.parentElement;
   img.remove();
-  wrap.classList.remove("card-thumb-photo", "review-thumb-photo");
   wrap.style.background = wrap.dataset.fallbackColor || "#999";
   var span = document.createElement("span");
   span.textContent = wrap.dataset.fallbackText || "";
@@ -32,1256 +33,394 @@ function handleImgError(img) {
 <script data-goatcounter="https://brick77.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-
 <header class="site-header">
-  <div class="wrap">
-    <a href="index.html" class="logo"><img src="images/logo-icon.svg" class="logo-icon" alt="">Brick<span>Passie</span></a>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">Over mij</a>
-      <a href="disclaimer.html">Disclaimer</a>
-    </nav>
-    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
-  </div>
+  <a href="index.html" class="logo"><img src="images/logo-icon.svg" class="logo-icon" alt="">brickpassie<span class="dot">.</span></a>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">Over mij</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="index.html#sets" class="nav-cta">Zoek een set</a>
+  </nav>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <h1>Mijn LEGO-bouwsels op een rij</h1>
-    <p>Geen ellenlange reviews, gewoon een eerlijk overzicht van wat ik zelf gebouwd heb: specs, prijs en koopadvies.</p>
-    <div class="stats-bar">
-      <div class="stat"><strong>67</strong><span>sets gebouwd</span></div>
-      <div class="stat"><strong>25.616</strong><span>stukjes verwerkt</span></div>
-      <div class="stat"><strong>&euro;2.464+</strong><span>aan LEGO gebouwd</span></div>
+<main>
+  <section class="hero">
+    <div class="sticker">Elke set zelf gebouwd</div>
+    <h1>Welke LEGO set maakt jou blij?</h1>
+    <p class="lead">Zoek op naam, thema of setnummer.</p>
+    <form class="searchbar" id="search-form" role="search">
+      <input type="search" id="set-search" placeholder="Bijv. bloemen of Ferrari&hellip;" aria-label="Zoek een set" autocomplete="off">
+      <button type="submit">Zoek</button>
+    </form>
+    <div class="stats-line"><span><strong>67</strong> sets gebouwd</span><span><strong>25.616</strong> stukjes</span><span><strong>&euro;2.464+</strong> aan LEGO</span></div>
+  </section>
+
+  <section class="sets" id="sets">
+    <div class="sets-head"><h2>Alle sets</h2><span class="muted" id="result-count"></span></div>
+    <div class="chips" id="theme-chips">
+      <button class="chip active" data-theme="alle" aria-pressed="true">Alles</button>
+      <button class="chip" data-theme="Shell" aria-pressed="false">Shell</button>
+      <button class="chip" data-theme="Minecraft" aria-pressed="false">Minecraft</button>
+      <button class="chip" data-theme="Friends" aria-pressed="false">Friends</button>
+      <button class="chip" data-theme="Botanicals" aria-pressed="false">Botanicals</button>
+      <button class="chip" data-theme="Creator" aria-pressed="false">Creator</button>
+      <button class="chip" data-theme="Disney" aria-pressed="false">Disney</button>
+      <button class="chip" data-theme="Harry Potter" aria-pressed="false">Harry Potter</button>
+      <button class="chip" data-theme="Speed Champions" aria-pressed="false">Speed Champions</button>
+      <button class="chip" data-theme="Super Mario" aria-pressed="false">Super Mario</button>
+      <button class="chip" data-theme="Technic" aria-pressed="false">Technic</button>
+      <button class="chip" data-theme="Icons" aria-pressed="false">Icons</button>
+      <button class="chip" data-theme="Minifiguren" aria-pressed="false">Minifiguren</button>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2 class="section-title">Alle reviews</h2>
-    <p class="section-lead">Elke set op deze pagina heb ik zelf gebouwd, nieuwste aankoop eerst.</p>
-
-    <div class="filter-bar">
-      <input type="search" id="set-search" placeholder="Zoek op naam of setnummer...">
-      <label for="theme-filter">Filter op type set:</label>
-      <select id="theme-filter">
-        <option value="alle">Alle types (67)</option>
-        <option value="Shell">Shell (10)</option>
-        <option value="Minecraft">Minecraft (1)</option>
-        <option value="Friends">Friends (29)</option>
-        <option value="Botanicals">Botanicals (8)</option>
-        <option value="Creator">Creator (2)</option>
-        <option value="Disney">Disney (2)</option>
-        <option value="Harry Potter">Harry Potter (3)</option>
-        <option value="Speed Champions">Speed Champions (5)</option>
-        <option value="Super Mario">Super Mario (1)</option>
-        <option value="Technic">Technic (4)</option>
-        <option value="Icons">Icons (1)</option>
-        <option value="Minifiguren">Minifiguren (1)</option>
-      </select>
-    </div>
-
     <div class="grid" id="review-grid">
-
-      <article class="card" data-theme="Minifiguren">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#ffd23f 100%)" data-fallback-text="40820">
-          <img src="images/40820.jpg" alt="LEGO Minifiguren Grote minifiguur van de Kerstman (40820)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/grote-minifiguur-van-de-kerstman-40820.html">Grote minifiguur van de Kerstman (40820)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Minifiguren</span>
-            <span class="tag">761 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Grote bouwbare minifiguur van de Kerstman met klassieke rode outfit, muts en witte baard, met beweegbare armen en geschikt om zittend of staand te displayen.</p>
-          <div class="card-cta">
-            <a href="reviews/grote-minifiguur-van-de-kerstman-40820.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Technic">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42223">
-          <img src="images/42223.jpg" alt="LEGO Technic 1966 Ford GT40 MKII racewagen (42223)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/1966-ford-gt40-mkii-racewagen-42223.html">1966 Ford GT40 MKII racewagen (42223)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Technic</span>
-            <span class="tag">793 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Technic-model van de 1966 Ford GT40 MKII racewagen met besturing via een knop op het dak, openende deuren en een motorkap die opent via een hendel in de cabine.</p>
-          <div class="card-cta">
-            <a href="reviews/1966-ford-gt40-mkii-racewagen-42223.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Harry Potter">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#740001 0%,#d3a625 100%)" data-fallback-text="76466">
-          <img src="images/76466.jpg" alt="LEGO Harry Potter Steen der Wijzen - Verzameleditie (76466)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/steen-der-wijzen-verzameleditie-76466.html">Steen der Wijzen - Verzameleditie (76466)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Harry Potter</span>
-            <span class="tag">1571 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Harry Potter verzameleditie ter ere van 25 jaar Steen der Wijzen, met een Hedwig-figuur, Harry's koffer met filmscene, een toverschaakbord en 3 minifiguren.</p>
-          <div class="card-cta">
-            <a href="reviews/steen-der-wijzen-verzameleditie-76466.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Technic">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42235">
-          <img src="images/42235.jpg" alt="LEGO Technic Ferrari 488 Pista auto (42235)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-488-pista-auto-42235.html">Ferrari 488 Pista auto (42235)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Technic</span>
-            <span class="tag">882 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Technic-model van de Ferrari 488 Pista met V8-motor met bewegende zuigers, differentieel, besturing en openende deuren.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-488-pista-auto-42235.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Icons">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#8b0000 0%,#c98a3d 100%)" data-fallback-text="11376">
-          <img src="images/11376.jpg" alt="LEGO Icons Ford Model T (11376)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ford-model-t-11376.html">Ford Model T (11376)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Icons</span>
-            <span class="tag">1060 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Icons-replica van de klassieke Ford Model T uit de jaren 1910, met opvouwbaar dak, openende deur en werkende motorventilator.</p>
-          <div class="card-cta">
-            <a href="reviews/ford-model-t-11376.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Technic">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42154">
-          <img src="images/42154.jpg" alt="LEGO Technic 2022 Ford GT (42154)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/2022-ford-gt-42154.html">2022 Ford GT (42154)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Technic</span>
-            <span class="tag">1468 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Technic-model op schaal 1:12 van de 2022 Ford GT met V6-motor met bewegende zuigers en onafhankelijke vering op alle wielen.</p>
-          <div class="card-cta">
-            <a href="reviews/2022-ford-gt-42154.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Technic">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42206">
-          <img src="images/42206.jpg" alt="LEGO Technic Oracle Red Bull Racing RB20 F1 auto (42206)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/oracle-red-bull-racing-rb20-f1-auto-42206.html">Oracle Red Bull Racing RB20 F1 auto (42206)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Technic</span>
-            <span class="tag">1639 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Technic-model op schaal 1:8 van de Red Bull RB20 met functionerende sturing, V6-motor, DRS-spoiler en tweeversnellingsbak.</p>
-          <div class="card-cta">
-            <a href="reviews/oracle-red-bull-racing-rb20-f1-auto-42206.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Speed Champions">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77243">
-          <img src="images/77243.jpg" alt="LEGO Speed Champions Oracle Red Bull Racing RB20 F1 racewagen (77243)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/oracle-red-bull-racing-rb20-f1-racewagen-77243.html">Oracle Red Bull Racing RB20 F1 racewagen (77243)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Speed Champions</span>
-            <span class="tag">251 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Speed Champions-model van de Red Bull RB20 uit het Formule 1-seizoen 2024, met achtervleugel en coureur-minifiguur.</p>
-          <div class="card-cta">
-            <a href="reviews/oracle-red-bull-racing-rb20-f1-racewagen-77243.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Speed Champions">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77256">
-          <img src="images/77256.jpg" alt="LEGO Speed Champions Tijdmachine uit Back to the Future (77256)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/tijdmachine-uit-back-to-the-future-77256.html">Tijdmachine uit Back to the Future (77256)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Speed Champions</span>
-            <span class="tag">357 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Modelauto van de DeLorean-tijdmachine uit Back to the Future, bouwbaar met bliksemhaak of vliegmodus, met Doc Brown en Marty McFly.</p>
-          <div class="card-cta">
-            <a href="reviews/tijdmachine-uit-back-to-the-future-77256.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Speed Champions">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77255">
-          <img src="images/77255.jpg" alt="LEGO Speed Champions Bliksem McQueen (77255)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/bliksem-mcqueen-77255.html">Bliksem McQueen (77255)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Speed Champions</span>
-            <span class="tag">270 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Speed Champions-model van Bliksem McQueen uit Disney Pixar Cars, uitgebracht ter gelegenheid van de 20e verjaardag van de film.</p>
-          <div class="card-cta">
-            <a href="reviews/bliksem-mcqueen-77255.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Speed Champions">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77261">
-          <img src="images/77261.jpg" alt="LEGO Speed Champions Ferrari 499P (77261)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-499p-77261.html">Ferrari 499P (77261)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Speed Champions</span>
-            <span class="tag">329 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>LEGO Speed Champions-model van de Ferrari 499P racewagen met achtervleugel, luchtinlaat op het dak en bestuurdersminifiguur.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-499p-77261.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Super Mario">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#e52521 0%,#049cd8 100%)" data-fallback-text="72046">
-          <img src="images/72046.jpg" alt="LEGO Super Mario Game Boy (72046)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/game-boy-72046.html">Game Boy (72046)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Super Mario</span>
-            <span class="tag">421 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Bouwbare replica op bijna 1:1-schaal van de originele Nintendo Game Boy, met werkende knoppen en verwisselbare 3D-schermen.</p>
-          <div class="card-cta">
-            <a href="reviews/game-boy-72046.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Speed Champions">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="71049">
-          <img src="images/71049.jpg" alt="LEGO Speed Champions F1 raceauto's (verrassingsdoos) (71049)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/f1-raceautos-verrassingsdoos-71049.html">F1 raceauto's (verrassingsdoos) (71049)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Speed Champions</span>
-            <span class="tag">29 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Verrassingsdoos uit een reeks van 12 verzamelbare LEGO F1-mini-raceauto's met cockpit-helm en bewegende wielen.</p>
-          <div class="card-cta">
-            <a href="reviews/f1-raceautos-verrassingsdoos-71049.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Harry Potter">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#740001 0%,#d3a625 100%)" data-fallback-text="76449">
-          <img src="images/76449.jpg" alt="LEGO Harry Potter Het Monsterlijke Monsterboek (76449)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/het-monsterlijke-monsterboek-76449.html">Het Monsterlijke Monsterboek (76449)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Harry Potter</span>
-            <span class="tag">518 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Bouwset van het Monsterlijke Monsterboek uit Zweinstein met pull-backfunctie waardoor het boek met zijn tanden klappert, inclusief Marcel Lubbermans-minifiguur.</p>
-          <div class="card-cta">
-            <a href="reviews/het-monsterlijke-monsterboek-76449.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Harry Potter">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#740001 0%,#d3a625 100%)" data-fallback-text="76470">
-          <img src="images/76470.jpg" alt="LEGO Harry Potter Betoverde vliegende Ford Anglia (76470)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/betoverde-vliegende-ford-anglia-76470.html">Betoverde vliegende Ford Anglia (76470)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Harry Potter</span>
-            <span class="tag">868 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Model van de vliegende Ford Anglia uit Harry Potter en de Geheime Kamer, met openende deuren/kofferbak en 3 minifiguren.</p>
-          <div class="card-cta">
-            <a href="reviews/betoverde-vliegende-ford-anglia-76470.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Disney">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#7b2ff7 0%,#f7b2d9 100%)" data-fallback-text="40774">
-          <img src="images/40774.jpg" alt="LEGO Disney Klassieke animatiescènes (40774)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/klassieke-animatiesc-nes-40774.html">Klassieke animatiescènes (40774)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Disney</span>
-            <span class="tag">270 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Bouwbare retro-tv met werkende draaiknoppen en antennes, met 3 verwisselbare Disney-filmscènes en de personages Simba en Woody.</p>
-          <div class="card-cta">
-            <a href="reviews/klassieke-animatiesc-nes-40774.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Disney">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#7b2ff7 0%,#f7b2d9 100%)" data-fallback-text="43243">
-          <img src="images/43243.jpg" alt="LEGO Disney Simba de Leeuwenkoning als welp (43243)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/simba-de-leeuwenkoning-als-welp-43243.html">Simba de Leeuwenkoning als welp (43243)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Disney</span>
-            <span class="tag">222 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Bouwbaar Disney-figuur van Simba met draaibare kop en beweegbare poten en staart, uitgebracht voor het 30-jarig jubileum van De Leeuwenkoning.</p>
-          <div class="card-cta">
-            <a href="reviews/simba-de-leeuwenkoning-als-welp-43243.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Creator">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#2193b0 0%,#6dd5ed 100%)" data-fallback-text="31010">
-          <img src="images/31010.jpg" alt="LEGO Creator Boomhuis (31010)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/boomhuis-31010.html">Boomhuis (31010)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Creator</span>
-            <span class="tag">356 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>3-in-1 Creator-model: te bouwen als boomhut, vakantiehuisje aan het meer, of boerenschuur, inclusief 2 minifiguren.</p>
-          <div class="card-cta">
-            <a href="reviews/boomhuis-31010.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Creator">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#2193b0 0%,#6dd5ed 100%)" data-fallback-text="40086">
-          <img src="images/40086.jpg" alt="LEGO Creator Paashaas met wortel (40086)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/paashaas-met-wortel-40086.html">Paashaas met wortel (40086)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Creator</span>
-            <span class="tag">106 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Seizoensgebonden set uit 2014: een groot decoratief model van een paashaas met een wortel.</p>
-          <div class="card-cta">
-            <a href="reviews/paashaas-met-wortel-40086.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10311">
-          <img src="images/10311.jpg" alt="LEGO Botanicals Orchidee (10311)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/orchidee-10311.html">Orchidee (10311)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">608 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Bloemstuk van een orchidee met 5 bladeren en 2 luchtwortels, ca. 39 cm hoog.</p>
-          <div class="card-cta">
-            <a href="reviews/orchidee-10311.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10281">
-          <img src="images/10281.jpg" alt="LEGO Botanicals Bonsaiboompje (10281)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/bonsaiboompje-10281.html">Bonsaiboompje (10281)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">878 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Decoratief bonsaiboompje met verwisselbare groene blaadjes of roze bloesem, ca. 18 cm hoog.</p>
-          <div class="card-cta">
-            <a href="reviews/bonsaiboompje-10281.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="11509">
-          <img src="images/11509.jpg" alt="LEGO Botanicals Bloeiende cactus (11509)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/bloeiende-cactus-11509.html">Bloeiende cactus (11509)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">482 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Set met 2 bouwbare cactusmodellen: een grote met roze bloem en een kleine met roze knoppen.</p>
-          <div class="card-cta">
-            <a href="reviews/bloeiende-cactus-11509.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10369">
-          <img src="images/10369.jpg" alt="LEGO Botanicals Japanse abrikoos (10369)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/japanse-abrikoos-10369.html">Japanse abrikoos (10369)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">327 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Decoratieve tak van een Japanse abrikozenboom (pruimenbloesem), opgebouwd uit 327 onderdelen.</p>
-          <div class="card-cta">
-            <a href="reviews/japanse-abrikoos-10369.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10343">
-          <img src="images/10343.jpg" alt="LEGO Botanicals Miniorchidee (10343)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/miniorchidee-10343.html">Miniorchidee (10343)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">274 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Miniatuurorchidee met 5 bloeiende bloemen en enkele knoppen, op een sokkel met houteffect.</p>
-          <div class="card-cta">
-            <a href="reviews/miniorchidee-10343.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10347">
-          <img src="images/10347.jpg" alt="LEGO Botanicals Klein zomers boeket (10347)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/klein-zomers-boeket-10347.html">Klein zomers boeket (10347)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">373 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Klein boeket met 7 soorten pastelkleurige bloemen op verstelbare stelen, geschikt vanaf 9 jaar.</p>
-          <div class="card-cta">
-            <a href="reviews/klein-zomers-boeket-10347.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10314">
-          <img src="images/10314.jpg" alt="LEGO Botanicals Bloemstuk met gedroogde bloemen (10314)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/bloemstuk-met-gedroogde-bloemen-10314.html">Bloemstuk met gedroogde bloemen (10314)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">812 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Decoratief bloemstuk dat gedroogde bloemen nabootst, ontworpen als bouwproject voor meerdere bouwers samen.</p>
-          <div class="card-cta">
-            <a href="reviews/bloemstuk-met-gedroogde-bloemen-10314.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Botanicals">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10329">
-          <img src="images/10329.jpg" alt="LEGO Botanicals Miniplantjes (10329)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/miniplantjes-10329.html">Miniplantjes (10329)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Botanicals</span>
-            <span class="tag">758 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-          <p>Bouwset met 9 miniatuurplantjes in eigen terracottakleurige potjes, waaronder tropische en vleesetende soorten.</p>
-          <div class="card-cta">
-            <a href="reviews/miniplantjes-10329.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41039">
-          <img src="images/41039.jpg" alt="LEGO Friends Sunshine Ranch (41039)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/sunshine-ranch-41039.html">Sunshine Ranch (41039)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">721 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends paardenranch met stallen, hindernissen, een veulen en minipoppetjes van Mia en Liza.</p>
-          <div class="card-cta">
-            <a href="reviews/sunshine-ranch-41039.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41056">
-          <img src="images/41056.jpg" alt="LEGO Friends Heartlake satellietwagen (41056)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/heartlake-satellietwagen-41056.html">Heartlake satellietwagen (41056)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">278 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends nieuwsset met satellietwagen, nieuwsdesk, camera en minipoppetjes van Emma en Andrew.</p>
-          <div class="card-cta">
-            <a href="reviews/heartlake-satellietwagen-41056.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41037">
-          <img src="images/41037.jpg" alt="LEGO Friends Stephanie's strandhuis (41037)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/stephanies-strandhuis-41037.html">Stephanie's strandhuis (41037)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">369 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends strandhuis van Stephanie met terras, keuken, uitklapbare bank en minipoppetjes van Stephanie en Kate.</p>
-          <div class="card-cta">
-            <a href="reviews/stephanies-strandhuis-41037.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41005">
-          <img src="images/41005.jpg" alt="LEGO Friends Heartlake school (41005)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/heartlake-school-41005.html">Heartlake school (41005)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">487 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends schoolgebouw met tekenlokaal, natuurkundelokaal, cafetaria en minipoppetjes van Stephanie, Matthew en juf Stevens.</p>
-          <div class="card-cta">
-            <a href="reviews/heartlake-school-41005.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="3315">
-          <img src="images/3315.jpg" alt="LEGO Friends Olivia's huis (3315)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/olivias-huis-3315.html">Olivia's huis (3315)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">695 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends modulair woonhuis van Olivia met keuken, tuin, barbecue en drie minipoppetjes plus een kat.</p>
-          <div class="card-cta">
-            <a href="reviews/olivias-huis-3315.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41015">
-          <img src="images/41015.jpg" alt="LEGO Friends Dolfijn cruiser (41015)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/dolfijn-cruiser-41015.html">Dolfijn cruiser (41015)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">612 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends cruiseschip met waterglijbaan, jetski, kajuiten en minipoppetjes van Mia, Maya en Andrew.</p>
-          <div class="card-cta">
-            <a href="reviews/dolfijn-cruiser-41015.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41038">
-          <img src="images/41038.jpg" alt="LEGO Friends Jungle reddingsbasis (41038)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/jungle-reddingsbasis-41038.html">Jungle reddingsbasis (41038)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">472 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends junglebasis met uitkijktoren, glijbaan, zipline, reddingsboot en vier dieren voor dierenreddingsavonturen.</p>
-          <div class="card-cta">
-            <a href="reviews/jungle-reddingsbasis-41038.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41105">
-          <img src="images/41105.jpg" alt="LEGO Friends Popster Podium (41105)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/popster-podium-41105.html">Popster Podium (41105)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">446 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends podiumset met draaibare coulissen, dansfunctie en minipoppetjes van popster Livi en Andrea.</p>
-          <div class="card-cta">
-            <a href="reviews/popster-podium-41105.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41055">
-          <img src="images/41055.jpg" alt="LEGO Friends Assepoesters romantische kasteel (41055)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/assepoesters-romantische-kasteel-41055.html">Assepoesters romantische kasteel (41055)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">646 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>Kasteel van Assepoester met balzaal, slaapkamer, tuin en minipoppetjes van Assepoester, haar prins, Lucifer en Bruno.</p>
-          <div class="card-cta">
-            <a href="reviews/assepoesters-romantische-kasteel-41055.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41093">
-          <img src="images/41093.jpg" alt="LEGO Friends Heartlake Kapsalon (41093)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/heartlake-kapsalon-41093.html">Heartlake Kapsalon (41093)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">318 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends kapsalon met wasplek, kappersstoel en accessoirewagentje, inclusief Emma en styliste Natasha minifiguren.</p>
-          <div class="card-cta">
-            <a href="reviews/heartlake-kapsalon-41093.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41006">
-          <img src="images/41006.jpg" alt="LEGO Friends Bakkerij (41006)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/bakkerij-41006.html">Bakkerij (41006)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">253 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends bakkerij met oven, buitenetalage en kassa, inclusief Mia en Danielle minifiguren en gebakaccessoires.</p>
-          <div class="card-cta">
-            <a href="reviews/bakkerij-41006.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41026">
-          <img src="images/41026.jpg" alt="LEGO Friends Sunshine Oogst (41026)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/sunshine-oogst-41026.html">Sunshine Oogst (41026)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">233 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends fruit- en groentekraam met tractor, oplegger en hondenhok, inclusief Olivia minifiguur en haar hond.</p>
-          <div class="card-cta">
-            <a href="reviews/sunshine-oogst-41026.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41098">
-          <img src="images/41098.jpg" alt="LEGO Friends Emma's Toeristenkiosk (41098)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/emmas-toeristenkiosk-41098.html">Emma's Toeristenkiosk (41098)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">98 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends toeristenkiosk met draaibare display, postbus en bankje, inclusief Emma minifiguur en accessoires.</p>
-          <div class="card-cta">
-            <a href="reviews/emmas-toeristenkiosk-41098.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="3186">
-          <img src="images/3186.jpg" alt="LEGO Friends Emma's paardentrailer (3186)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/emmas-paardentrailer-3186.html">Emma's paardentrailer (3186)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">218 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends truck met paardentrailer, verzorgingsplek en oefenhindernis, inclusief Emma minifiguur en haar paard Robin.</p>
-          <div class="card-cta">
-            <a href="reviews/emmas-paardentrailer-3186.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41095">
-          <img src="images/41095.jpg" alt="LEGO Friends Emma's huis (41095)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/emmas-huis-41095.html">Emma's huis (41095)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">706 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends modulair woonhuis met keuken, woonkamer, badkamer, slaapkamer en dakterras, inclusief 3 minifiguren en een fiets.</p>
-          <div class="card-cta">
-            <a href="reviews/emmas-huis-41095.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41033">
-          <img src="images/41033.jpg" alt="LEGO Friends Junglewaterval reddingsactie (41033)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/junglewaterval-reddingsactie-41033.html">Junglewaterval reddingsactie (41033)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">183 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends junglewaterval met afdamfunctie, klippenhut en grotten om een tijgerwelp te redden, met Olivia minifiguur.</p>
-          <div class="card-cta">
-            <a href="reviews/junglewaterval-reddingsactie-41033.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41100">
-          <img src="images/41100.jpg" alt="LEGO Friends Heartlake Privéjet (41100)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/heartlake-priv-jet-41100.html">Heartlake Privéjet (41100)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">230 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends privéjet met cockpit, cabine, bagagescanner en incheckbalie, inclusief Olivia en Matthew minifiguren.</p>
-          <div class="card-cta">
-            <a href="reviews/heartlake-priv-jet-41100.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41034">
-          <img src="images/41034.jpg" alt="LEGO Friends Zomercaravan (41034)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/zomercaravan-41034.html">Zomercaravan (41034)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">297 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends caravan met auto, keuken, douche en bedden voor een kampeeravontuur met Olivia en Joanna.</p>
-          <div class="card-cta">
-            <a href="reviews/zomercaravan-41034.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41002">
-          <img src="images/41002.jpg" alt="LEGO Friends Emma's Karate Class (41002)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/emmas-karate-class-41002.html">Emma's Karate Class (41002)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">93 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends karateschool voor Emma met een blokkenstapel om te breken en kendo-accessoires.</p>
-          <div class="card-cta">
-            <a href="reviews/emmas-karate-class-41002.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41003">
-          <img src="images/41003.jpg" alt="LEGO Friends Olivia's veulentje (41003)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/olivias-veulentje-41003.html">Olivia's veulentje (41003)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">70 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends manege-set waarin Olivia een pasgeboren veulen verzorgt met eten en verzorgingsspullen.</p>
-          <div class="card-cta">
-            <a href="reviews/olivias-veulentje-41003.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41009">
-          <img src="images/41009.jpg" alt="LEGO Friends Andrea's slaapkamer (41009)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/andreas-slaapkamer-41009.html">Andrea's slaapkamer (41009)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">75 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends slaapkamerset voor Andrea met make-uptafel, laptop en uitklapbare logeerbank.</p>
-          <div class="card-cta">
-            <a href="reviews/andreas-slaapkamer-41009.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41029">
-          <img src="images/41029.jpg" alt="LEGO Friends Stephanie's lammetje (41029)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/stephanies-lammetje-41029.html">Stephanie's lammetje (41029)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">78 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends verzorgingsset met Stephanie's minipoppetje, een lammetje, huisje en badkuip.</p>
-          <div class="card-cta">
-            <a href="reviews/stephanies-lammetje-41029.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41010">
-          <img src="images/41010.jpg" alt="LEGO Friends Olivia's strandbuggy (41010)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/olivias-strandbuggy-41010.html">Olivia's strandbuggy (41010)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">94 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends strandbuggy voor Olivia met surfplank, instelbare vering en kokospalm.</p>
-          <div class="card-cta">
-            <a href="reviews/olivias-strandbuggy-41010.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41048">
-          <img src="images/41048.jpg" alt="LEGO Friends Leeuwenwelp savanne (41048)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/leeuwenwelp-savanne-41048.html">Leeuwenwelp savanne (41048)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">43 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends boomverblijf voor een leeuwenwelp met uitzicht over de savanne.</p>
-          <div class="card-cta">
-            <a href="reviews/leeuwenwelp-savanne-41048.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41041">
-          <img src="images/41041.jpg" alt="LEGO Friends Het paradijsje van Schildpad (41041)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/het-paradijsje-van-schildpad-41041.html">Het paradijsje van Schildpad (41041)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">43 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends dierenverblijf voor een schildpad met waterval, palmbomen en bessen.</p>
-          <div class="card-cta">
-            <a href="reviews/het-paradijsje-van-schildpad-41041.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41042">
-          <img src="images/41042.jpg" alt="LEGO Friends De tempel van Tijger (41042)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/de-tempel-van-tijger-41042.html">De tempel van Tijger (41042)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">42 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>Kleine LEGO Friends tempel voor een tijger, met troon, gouden decoraties en bloemen.</p>
-          <div class="card-cta">
-            <a href="reviews/de-tempel-van-tijger-41042.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41031">
-          <img src="images/41031.jpg" alt="LEGO Friends Andrea's berghut (41031)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/andreas-berghut-41031.html">Andrea's berghut (41031)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">119 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends kampeerset met een berghut, kampvuur, een eekhoorn en Andrea's minipoppetje.</p>
-          <div class="card-cta">
-            <a href="reviews/andreas-berghut-41031.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41049">
-          <img src="images/41049.jpg" alt="LEGO Friends Panda bamboebos (41049)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/panda-bamboebos-41049.html">Panda bamboebos (41049)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">47 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends dierenset met een panda, draaibare boomstam, bamboetak en glijbaan.</p>
-          <div class="card-cta">
-            <a href="reviews/panda-bamboebos-41049.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Friends">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41103">
-          <img src="images/41103.jpg" alt="LEGO Friends Popster Opnamestudio (41103)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/popster-opnamestudio-41103.html">Popster Opnamestudio (41103)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Friends</span>
-            <span class="tag">172 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>LEGO Friends opnamestudio waarin Olivia samen met popster Livi een nummer opneemt.</p>
-          <div class="card-cta">
-            <a href="reviews/popster-opnamestudio-41103.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Minecraft">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#4c8c2b 0%,#2e5c1a 100%)" data-fallback-text="21113">
-          <img src="images/21113.jpg" alt="LEGO Minecraft De Grot (21113)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/de-grot-21113.html">De Grot (21113)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Minecraft</span>
-            <span class="tag">249 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          </div>
-          <p>Minecraft-set met Steve, een zombie en een spin; bevat een grot met ertsen, lava en dynamiet.</p>
-          <div class="card-cta">
-            <a href="reviews/de-grot-21113.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40195">
-          <img src="images/40195.jpg" alt="LEGO Shell Shell Tankstation (40195)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/shell-tankstation-40195.html">Shell Tankstation (40195)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">95 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power promoset (2014): miniatuur Shell-tankstation inclusief 1 minifiguur.</p>
-          <div class="card-cta">
-            <a href="reviews/shell-tankstation-40195.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40196">
-          <img src="images/40196.jpg" alt="LEGO Shell Shell Tankwagen (40196)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/shell-tankwagen-40196.html">Shell Tankwagen (40196)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">95 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power promopolybag (2014) met een miniatuur Shell-tankwagen.</p>
-          <div class="card-cta">
-            <a href="reviews/shell-tankwagen-40196.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40193">
-          <img src="images/40193.jpg" alt="LEGO Shell Ferrari 512 S (40193)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-512-s-40193.html">Ferrari 512 S (40193)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">51 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power Ferrari-polybag (2014) met miniatuur Ferrari 512 S racewagen.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-512-s-40193.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40191">
-          <img src="images/40191.jpg" alt="LEGO Shell Ferrari F12 Berlinetta (40191)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-f12-berlinetta-40191.html">Ferrari F12 Berlinetta (40191)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">46 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power Ferrari-polybag (2014) met miniatuur Ferrari F12 Berlinetta.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-f12-berlinetta-40191.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="30192">
-          <img src="images/30192.jpg" alt="LEGO Shell Ferrari F40 (30192)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-f40-30192.html">Ferrari F40 (30192)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">48 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power Ferrari-promoset (2012): miniatuur Ferrari F40 met pull-back-functie.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-f40-30192.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40190">
-          <img src="images/40190.jpg" alt="LEGO Shell Ferrari F138 (40190)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-f138-40190.html">Ferrari F138 (40190)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">41 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power Ferrari-polybag (2014) met miniatuur Ferrari F138 Formule 1-wagen.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-f138-40190.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="30193">
-          <img src="images/30193.jpg" alt="LEGO Shell Ferrari 250 GT Berlinetta (30193)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-250-gt-berlinetta-30193.html">Ferrari 250 GT Berlinetta (30193)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">25 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power Ferrari-promoset (2012) met miniatuur Ferrari 250 GT Berlinetta.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-250-gt-berlinetta-30193.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="30194">
-          <img src="images/30194.jpg" alt="LEGO Shell Ferrari 458 Italia (30194)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-458-italia-30194.html">Ferrari 458 Italia (30194)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">33 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power Ferrari-promoset (2012): miniatuur Ferrari 458 Italia met pull-back-mechanisme.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-458-italia-30194.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40194">
-          <img src="images/40194.jpg" alt="LEGO Shell Finish Line & Podium (40194)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/finish-line-podium-40194.html">Finish Line & Podium (40194)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">64 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Shell V-Power Ferrari-promopolybag (2014) met finishboog, podium en minifiguur, verkocht bij Shell-tankstations.</p>
-          <div class="card-cta">
-            <a href="reviews/finish-line-podium-40194.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-theme="Shell">
-        <div class="card-thumb card-thumb-photo" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40192">
-          <img src="images/40192.jpg" alt="LEGO Shell Ferrari 250 GTO (40192)" loading="lazy" onerror="handleImgError(this)">
-        </div>
-        <div class="card-body">
-          <h3><a href="reviews/ferrari-250-gto-40192.html">Ferrari 250 GTO (40192)</a></h3>
-          <div class="card-meta">
-            <span class="tag">Shell</span>
-            <span class="tag">48 stukjes</span>
-            <span class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-          </div>
-          <p>Klein LEGO-polybagje van de Ferrari 250 GTO, uitgebracht als Shell V-Power promotieset bij tankstations in 2014.</p>
-          <div class="card-cta">
-            <a href="reviews/ferrari-250-gto-40192.html">Lees review &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <a class="card" href="reviews/grote-minifiguur-van-de-kerstman-40820.html" data-theme="Minifiguren" data-search="grote minifiguur van de kerstman 40820 minifiguren grote bouwbare minifiguur van de kerstman met klassieke rode outfit, muts en witte baard, met beweegbare armen en geschikt om zittend of staand te displayen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#ffd23f 100%)" data-fallback-text="40820"><img src="images/40820.png" alt="LEGO Minifiguren Grote minifiguur van de Kerstman (40820)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Grote minifiguur van de Kerstman</h3>
+        <div class="card-meta"><span>Minifiguren &middot; 761 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/1966-ford-gt40-mkii-racewagen-42223.html" data-theme="Technic" data-search="1966 ford gt40 mkii racewagen 42223 technic lego technic-model van de 1966 ford gt40 mkii racewagen met besturing via een knop op het dak, openende deuren en een motorkap die opent via een hendel in de cabine.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42223"><img src="images/42223.png" alt="LEGO Technic 1966 Ford GT40 MKII racewagen (42223)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>1966 Ford GT40 MKII racewagen</h3>
+        <div class="card-meta"><span>Technic &middot; 793 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/steen-der-wijzen-verzameleditie-76466.html" data-theme="Harry Potter" data-search="steen der wijzen - verzameleditie 76466 harry potter lego harry potter verzameleditie ter ere van 25 jaar steen der wijzen, met een hedwig-figuur, harry&#x27;s koffer met filmscene, een toverschaakbord en 3 minifiguren.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#740001 0%,#d3a625 100%)" data-fallback-text="76466"><img src="images/76466.png" alt="LEGO Harry Potter Steen der Wijzen - Verzameleditie (76466)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Steen der Wijzen - Verzameleditie</h3>
+        <div class="card-meta"><span>Harry Potter &middot; 1571 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-488-pista-auto-42235.html" data-theme="Technic" data-search="ferrari 488 pista auto 42235 technic lego technic-model van de ferrari 488 pista met v8-motor met bewegende zuigers, differentieel, besturing en openende deuren.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42235"><img src="images/42235.png" alt="LEGO Technic Ferrari 488 Pista auto (42235)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari 488 Pista auto</h3>
+        <div class="card-meta"><span>Technic &middot; 882 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/ford-model-t-11376.html" data-theme="Icons" data-search="ford model t 11376 icons lego icons-replica van de klassieke ford model t uit de jaren 1910, met opvouwbaar dak, openende deur en werkende motorventilator.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#8b0000 0%,#c98a3d 100%)" data-fallback-text="11376"><img src="images/11376.png" alt="LEGO Icons Ford Model T (11376)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ford Model T</h3>
+        <div class="card-meta"><span>Icons &middot; 1060 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/2022-ford-gt-42154.html" data-theme="Technic" data-search="2022 ford gt 42154 technic lego technic-model op schaal 1:12 van de 2022 ford gt met v6-motor met bewegende zuigers en onafhankelijke vering op alle wielen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42154"><img src="images/42154.png" alt="LEGO Technic 2022 Ford GT (42154)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>2022 Ford GT</h3>
+        <div class="card-meta"><span>Technic &middot; 1468 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/oracle-red-bull-racing-rb20-f1-auto-42206.html" data-theme="Technic" data-search="oracle red bull racing rb20 f1 auto 42206 technic lego technic-model op schaal 1:8 van de red bull rb20 met functionerende sturing, v6-motor, drs-spoiler en tweeversnellingsbak.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#2b2b2b 0%,#f5a623 100%)" data-fallback-text="42206"><img src="images/42206.png" alt="LEGO Technic Oracle Red Bull Racing RB20 F1 auto (42206)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Oracle Red Bull Racing RB20 F1 auto</h3>
+        <div class="card-meta"><span>Technic &middot; 1639 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/oracle-red-bull-racing-rb20-f1-racewagen-77243.html" data-theme="Speed Champions" data-search="oracle red bull racing rb20 f1 racewagen 77243 speed champions lego speed champions-model van de red bull rb20 uit het formule 1-seizoen 2024, met achtervleugel en coureur-minifiguur.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77243"><img src="images/77243.png" alt="LEGO Speed Champions Oracle Red Bull Racing RB20 F1 racewagen (77243)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Oracle Red Bull Racing RB20 F1 racewagen</h3>
+        <div class="card-meta"><span>Speed Champions &middot; 251 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/tijdmachine-uit-back-to-the-future-77256.html" data-theme="Speed Champions" data-search="tijdmachine uit back to the future 77256 speed champions modelauto van de delorean-tijdmachine uit back to the future, bouwbaar met bliksemhaak of vliegmodus, met doc brown en marty mcfly.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77256"><img src="images/77256.png" alt="LEGO Speed Champions Tijdmachine uit Back to the Future (77256)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Tijdmachine uit Back to the Future</h3>
+        <div class="card-meta"><span>Speed Champions &middot; 357 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/bliksem-mcqueen-77255.html" data-theme="Speed Champions" data-search="bliksem mcqueen 77255 speed champions lego speed champions-model van bliksem mcqueen uit disney pixar cars, uitgebracht ter gelegenheid van de 20e verjaardag van de film.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77255"><img src="images/77255.png" alt="LEGO Speed Champions Bliksem McQueen (77255)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Bliksem McQueen</h3>
+        <div class="card-meta"><span>Speed Champions &middot; 270 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-499p-77261.html" data-theme="Speed Champions" data-search="ferrari 499p 77261 speed champions lego speed champions-model van de ferrari 499p racewagen met achtervleugel, luchtinlaat op het dak en bestuurdersminifiguur.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="77261"><img src="images/77261.png" alt="LEGO Speed Champions Ferrari 499P (77261)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari 499P</h3>
+        <div class="card-meta"><span>Speed Champions &middot; 329 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/game-boy-72046.html" data-theme="Super Mario" data-search="game boy 72046 super mario bouwbare replica op bijna 1:1-schaal van de originele nintendo game boy, met werkende knoppen en verwisselbare 3d-schermen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#e52521 0%,#049cd8 100%)" data-fallback-text="72046"><img src="images/72046.png" alt="LEGO Super Mario Game Boy (72046)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Game Boy</h3>
+        <div class="card-meta"><span>Super Mario &middot; 421 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/f1-raceautos-verrassingsdoos-71049.html" data-theme="Speed Champions" data-search="f1 raceauto&#x27;s (verrassingsdoos) 71049 speed champions verrassingsdoos uit een reeks van 12 verzamelbare lego f1-mini-raceauto&#x27;s met cockpit-helm en bewegende wielen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#1a1a1a 0%,#e10600 100%)" data-fallback-text="71049"><img src="images/71049.png" alt="LEGO Speed Champions F1 raceauto&#x27;s (verrassingsdoos) (71049)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>F1 raceauto&#x27;s (verrassingsdoos)</h3>
+        <div class="card-meta"><span>Speed Champions &middot; 29 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/het-monsterlijke-monsterboek-76449.html" data-theme="Harry Potter" data-search="het monsterlijke monsterboek 76449 harry potter bouwset van het monsterlijke monsterboek uit zweinstein met pull-backfunctie waardoor het boek met zijn tanden klappert, inclusief marcel lubbermans-minifiguur.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#740001 0%,#d3a625 100%)" data-fallback-text="76449"><img src="images/76449.png" alt="LEGO Harry Potter Het Monsterlijke Monsterboek (76449)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Het Monsterlijke Monsterboek</h3>
+        <div class="card-meta"><span>Harry Potter &middot; 518 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/betoverde-vliegende-ford-anglia-76470.html" data-theme="Harry Potter" data-search="betoverde vliegende ford anglia 76470 harry potter model van de vliegende ford anglia uit harry potter en de geheime kamer, met openende deuren/kofferbak en 3 minifiguren.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#740001 0%,#d3a625 100%)" data-fallback-text="76470"><img src="images/76470.png" alt="LEGO Harry Potter Betoverde vliegende Ford Anglia (76470)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Betoverde vliegende Ford Anglia</h3>
+        <div class="card-meta"><span>Harry Potter &middot; 868 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/klassieke-animatiesc-nes-40774.html" data-theme="Disney" data-search="klassieke animatiescènes 40774 disney bouwbare retro-tv met werkende draaiknoppen en antennes, met 3 verwisselbare disney-filmscènes en de personages simba en woody.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#7b2ff7 0%,#f7b2d9 100%)" data-fallback-text="40774"><img src="images/40774.png" alt="LEGO Disney Klassieke animatiescènes (40774)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Klassieke animatiescènes</h3>
+        <div class="card-meta"><span>Disney &middot; 270 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/simba-de-leeuwenkoning-als-welp-43243.html" data-theme="Disney" data-search="simba de leeuwenkoning als welp 43243 disney bouwbaar disney-figuur van simba met draaibare kop en beweegbare poten en staart, uitgebracht voor het 30-jarig jubileum van de leeuwenkoning.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#7b2ff7 0%,#f7b2d9 100%)" data-fallback-text="43243"><img src="images/43243.png" alt="LEGO Disney Simba de Leeuwenkoning als welp (43243)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Simba de Leeuwenkoning als welp</h3>
+        <div class="card-meta"><span>Disney &middot; 222 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/boomhuis-31010.html" data-theme="Creator" data-search="boomhuis 31010 creator 3-in-1 creator-model: te bouwen als boomhut, vakantiehuisje aan het meer, of boerenschuur, inclusief 2 minifiguren.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#2193b0 0%,#6dd5ed 100%)" data-fallback-text="31010"><img src="images/31010.jpg" alt="LEGO Creator Boomhuis (31010)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Boomhuis</h3>
+        <div class="card-meta"><span>Creator &middot; 356 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/paashaas-met-wortel-40086.html" data-theme="Creator" data-search="paashaas met wortel 40086 creator seizoensgebonden set uit 2014: een groot decoratief model van een paashaas met een wortel.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#2193b0 0%,#6dd5ed 100%)" data-fallback-text="40086"><img src="images/40086.jpg" alt="LEGO Creator Paashaas met wortel (40086)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Paashaas met wortel</h3>
+        <div class="card-meta"><span>Creator &middot; 106 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/orchidee-10311.html" data-theme="Botanicals" data-search="orchidee 10311 botanicals bloemstuk van een orchidee met 5 bladeren en 2 luchtwortels, ca. 39 cm hoog.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10311"><img src="images/10311.png" alt="LEGO Botanicals Orchidee (10311)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Orchidee</h3>
+        <div class="card-meta"><span>Botanicals &middot; 608 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/bonsaiboompje-10281.html" data-theme="Botanicals" data-search="bonsaiboompje 10281 botanicals decoratief bonsaiboompje met verwisselbare groene blaadjes of roze bloesem, ca. 18 cm hoog.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10281"><img src="images/10281.png" alt="LEGO Botanicals Bonsaiboompje (10281)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Bonsaiboompje</h3>
+        <div class="card-meta"><span>Botanicals &middot; 878 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/bloeiende-cactus-11509.html" data-theme="Botanicals" data-search="bloeiende cactus 11509 botanicals set met 2 bouwbare cactusmodellen: een grote met roze bloem en een kleine met roze knoppen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="11509"><img src="images/11509.png" alt="LEGO Botanicals Bloeiende cactus (11509)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Bloeiende cactus</h3>
+        <div class="card-meta"><span>Botanicals &middot; 482 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/japanse-abrikoos-10369.html" data-theme="Botanicals" data-search="japanse abrikoos 10369 botanicals decoratieve tak van een japanse abrikozenboom (pruimenbloesem), opgebouwd uit 327 onderdelen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10369"><img src="images/10369.png" alt="LEGO Botanicals Japanse abrikoos (10369)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Japanse abrikoos</h3>
+        <div class="card-meta"><span>Botanicals &middot; 327 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/miniorchidee-10343.html" data-theme="Botanicals" data-search="miniorchidee 10343 botanicals miniatuurorchidee met 5 bloeiende bloemen en enkele knoppen, op een sokkel met houteffect.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10343"><img src="images/10343.png" alt="LEGO Botanicals Miniorchidee (10343)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Miniorchidee</h3>
+        <div class="card-meta"><span>Botanicals &middot; 274 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/klein-zomers-boeket-10347.html" data-theme="Botanicals" data-search="klein zomers boeket 10347 botanicals klein boeket met 7 soorten pastelkleurige bloemen op verstelbare stelen, geschikt vanaf 9 jaar.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10347"><img src="images/10347.png" alt="LEGO Botanicals Klein zomers boeket (10347)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Klein zomers boeket</h3>
+        <div class="card-meta"><span>Botanicals &middot; 373 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/bloemstuk-met-gedroogde-bloemen-10314.html" data-theme="Botanicals" data-search="bloemstuk met gedroogde bloemen 10314 botanicals decoratief bloemstuk dat gedroogde bloemen nabootst, ontworpen als bouwproject voor meerdere bouwers samen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10314"><img src="images/10314.png" alt="LEGO Botanicals Bloemstuk met gedroogde bloemen (10314)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Bloemstuk met gedroogde bloemen</h3>
+        <div class="card-meta"><span>Botanicals &middot; 812 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/miniplantjes-10329.html" data-theme="Botanicals" data-search="miniplantjes 10329 botanicals bouwset met 9 miniatuurplantjes in eigen terracottakleurige potjes, waaronder tropische en vleesetende soorten.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#3a7d44 0%,#8bc34a 100%)" data-fallback-text="10329"><img src="images/10329.png" alt="LEGO Botanicals Miniplantjes (10329)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Miniplantjes</h3>
+        <div class="card-meta"><span>Botanicals &middot; 758 st.</span><span class="stars" role="img" aria-label="5 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      </a>
+      <a class="card" href="reviews/sunshine-ranch-41039.html" data-theme="Friends" data-search="sunshine ranch 41039 friends lego friends paardenranch met stallen, hindernissen, een veulen en minipoppetjes van mia en liza.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41039"><img src="images/41039.png" alt="LEGO Friends Sunshine Ranch (41039)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Sunshine Ranch</h3>
+        <div class="card-meta"><span>Friends &middot; 721 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/heartlake-satellietwagen-41056.html" data-theme="Friends" data-search="heartlake satellietwagen 41056 friends lego friends nieuwsset met satellietwagen, nieuwsdesk, camera en minipoppetjes van emma en andrew.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41056"><img src="images/41056.jpg" alt="LEGO Friends Heartlake satellietwagen (41056)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Heartlake satellietwagen</h3>
+        <div class="card-meta"><span>Friends &middot; 278 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/stephanies-strandhuis-41037.html" data-theme="Friends" data-search="stephanie&#x27;s strandhuis 41037 friends lego friends strandhuis van stephanie met terras, keuken, uitklapbare bank en minipoppetjes van stephanie en kate.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41037"><img src="images/41037.png" alt="LEGO Friends Stephanie&#x27;s strandhuis (41037)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Stephanie&#x27;s strandhuis</h3>
+        <div class="card-meta"><span>Friends &middot; 369 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/heartlake-school-41005.html" data-theme="Friends" data-search="heartlake school 41005 friends lego friends schoolgebouw met tekenlokaal, natuurkundelokaal, cafetaria en minipoppetjes van stephanie, matthew en juf stevens.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41005"><img src="images/41005.jpg" alt="LEGO Friends Heartlake school (41005)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Heartlake school</h3>
+        <div class="card-meta"><span>Friends &middot; 487 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/olivias-huis-3315.html" data-theme="Friends" data-search="olivia&#x27;s huis 3315 friends lego friends modulair woonhuis van olivia met keuken, tuin, barbecue en drie minipoppetjes plus een kat.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="3315"><img src="images/3315.jpg" alt="LEGO Friends Olivia&#x27;s huis (3315)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Olivia&#x27;s huis</h3>
+        <div class="card-meta"><span>Friends &middot; 695 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/dolfijn-cruiser-41015.html" data-theme="Friends" data-search="dolfijn cruiser 41015 friends lego friends cruiseschip met waterglijbaan, jetski, kajuiten en minipoppetjes van mia, maya en andrew.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41015"><img src="images/41015.jpg" alt="LEGO Friends Dolfijn cruiser (41015)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Dolfijn cruiser</h3>
+        <div class="card-meta"><span>Friends &middot; 612 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/jungle-reddingsbasis-41038.html" data-theme="Friends" data-search="jungle reddingsbasis 41038 friends lego friends junglebasis met uitkijktoren, glijbaan, zipline, reddingsboot en vier dieren voor dierenreddingsavonturen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41038"><img src="images/41038.png" alt="LEGO Friends Jungle reddingsbasis (41038)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Jungle reddingsbasis</h3>
+        <div class="card-meta"><span>Friends &middot; 472 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/popster-podium-41105.html" data-theme="Friends" data-search="popster podium 41105 friends lego friends podiumset met draaibare coulissen, dansfunctie en minipoppetjes van popster livi en andrea.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41105"><img src="images/41105.jpg" alt="LEGO Friends Popster Podium (41105)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Popster Podium</h3>
+        <div class="card-meta"><span>Friends &middot; 446 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/assepoesters-romantische-kasteel-41055.html" data-theme="Friends" data-search="assepoesters romantische kasteel 41055 friends kasteel van assepoester met balzaal, slaapkamer, tuin en minipoppetjes van assepoester, haar prins, lucifer en bruno.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41055"><img src="images/41055.jpg" alt="LEGO Friends Assepoesters romantische kasteel (41055)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Assepoesters romantische kasteel</h3>
+        <div class="card-meta"><span>Friends &middot; 646 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/heartlake-kapsalon-41093.html" data-theme="Friends" data-search="heartlake kapsalon 41093 friends lego friends kapsalon met wasplek, kappersstoel en accessoirewagentje, inclusief emma en styliste natasha minifiguren.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41093"><img src="images/41093.jpg" alt="LEGO Friends Heartlake Kapsalon (41093)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Heartlake Kapsalon</h3>
+        <div class="card-meta"><span>Friends &middot; 318 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/bakkerij-41006.html" data-theme="Friends" data-search="bakkerij 41006 friends lego friends bakkerij met oven, buitenetalage en kassa, inclusief mia en danielle minifiguren en gebakaccessoires.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41006"><img src="images/41006.jpg" alt="LEGO Friends Bakkerij (41006)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Bakkerij</h3>
+        <div class="card-meta"><span>Friends &middot; 253 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/sunshine-oogst-41026.html" data-theme="Friends" data-search="sunshine oogst 41026 friends lego friends fruit- en groentekraam met tractor, oplegger en hondenhok, inclusief olivia minifiguur en haar hond.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41026"><img src="images/41026.jpg" alt="LEGO Friends Sunshine Oogst (41026)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Sunshine Oogst</h3>
+        <div class="card-meta"><span>Friends &middot; 233 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/emmas-toeristenkiosk-41098.html" data-theme="Friends" data-search="emma&#x27;s toeristenkiosk 41098 friends lego friends toeristenkiosk met draaibare display, postbus en bankje, inclusief emma minifiguur en accessoires.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41098"><img src="images/41098.jpg" alt="LEGO Friends Emma&#x27;s Toeristenkiosk (41098)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Emma&#x27;s Toeristenkiosk</h3>
+        <div class="card-meta"><span>Friends &middot; 98 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/emmas-paardentrailer-3186.html" data-theme="Friends" data-search="emma&#x27;s paardentrailer 3186 friends lego friends truck met paardentrailer, verzorgingsplek en oefenhindernis, inclusief emma minifiguur en haar paard robin.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="3186"><img src="images/3186.jpg" alt="LEGO Friends Emma&#x27;s paardentrailer (3186)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Emma&#x27;s paardentrailer</h3>
+        <div class="card-meta"><span>Friends &middot; 218 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/emmas-huis-41095.html" data-theme="Friends" data-search="emma&#x27;s huis 41095 friends lego friends modulair woonhuis met keuken, woonkamer, badkamer, slaapkamer en dakterras, inclusief 3 minifiguren en een fiets.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41095"><img src="images/41095.jpg" alt="LEGO Friends Emma&#x27;s huis (41095)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Emma&#x27;s huis</h3>
+        <div class="card-meta"><span>Friends &middot; 706 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/junglewaterval-reddingsactie-41033.html" data-theme="Friends" data-search="junglewaterval reddingsactie 41033 friends lego friends junglewaterval met afdamfunctie, klippenhut en grotten om een tijgerwelp te redden, met olivia minifiguur.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41033"><img src="images/41033.png" alt="LEGO Friends Junglewaterval reddingsactie (41033)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Junglewaterval reddingsactie</h3>
+        <div class="card-meta"><span>Friends &middot; 183 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/heartlake-priv-jet-41100.html" data-theme="Friends" data-search="heartlake privéjet 41100 friends lego friends privéjet met cockpit, cabine, bagagescanner en incheckbalie, inclusief olivia en matthew minifiguren.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41100"><img src="images/41100.jpg" alt="LEGO Friends Heartlake Privéjet (41100)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Heartlake Privéjet</h3>
+        <div class="card-meta"><span>Friends &middot; 230 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/zomercaravan-41034.html" data-theme="Friends" data-search="zomercaravan 41034 friends lego friends caravan met auto, keuken, douche en bedden voor een kampeeravontuur met olivia en joanna.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41034"><img src="images/41034.png" alt="LEGO Friends Zomercaravan (41034)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Zomercaravan</h3>
+        <div class="card-meta"><span>Friends &middot; 297 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/emmas-karate-class-41002.html" data-theme="Friends" data-search="emma&#x27;s karate class 41002 friends lego friends karateschool voor emma met een blokkenstapel om te breken en kendo-accessoires.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41002"><img src="images/41002.png" alt="LEGO Friends Emma&#x27;s Karate Class (41002)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Emma&#x27;s Karate Class</h3>
+        <div class="card-meta"><span>Friends &middot; 93 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/olivias-veulentje-41003.html" data-theme="Friends" data-search="olivia&#x27;s veulentje 41003 friends lego friends manege-set waarin olivia een pasgeboren veulen verzorgt met eten en verzorgingsspullen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41003"><img src="images/41003.png" alt="LEGO Friends Olivia&#x27;s veulentje (41003)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Olivia&#x27;s veulentje</h3>
+        <div class="card-meta"><span>Friends &middot; 70 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/andreas-slaapkamer-41009.html" data-theme="Friends" data-search="andrea&#x27;s slaapkamer 41009 friends lego friends slaapkamerset voor andrea met make-uptafel, laptop en uitklapbare logeerbank.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41009"><img src="images/41009.png" alt="LEGO Friends Andrea&#x27;s slaapkamer (41009)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Andrea&#x27;s slaapkamer</h3>
+        <div class="card-meta"><span>Friends &middot; 75 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/stephanies-lammetje-41029.html" data-theme="Friends" data-search="stephanie&#x27;s lammetje 41029 friends lego friends verzorgingsset met stephanie&#x27;s minipoppetje, een lammetje, huisje en badkuip.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41029"><img src="images/41029.jpg" alt="LEGO Friends Stephanie&#x27;s lammetje (41029)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Stephanie&#x27;s lammetje</h3>
+        <div class="card-meta"><span>Friends &middot; 78 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/olivias-strandbuggy-41010.html" data-theme="Friends" data-search="olivia&#x27;s strandbuggy 41010 friends lego friends strandbuggy voor olivia met surfplank, instelbare vering en kokospalm.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41010"><img src="images/41010.png" alt="LEGO Friends Olivia&#x27;s strandbuggy (41010)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Olivia&#x27;s strandbuggy</h3>
+        <div class="card-meta"><span>Friends &middot; 94 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/leeuwenwelp-savanne-41048.html" data-theme="Friends" data-search="leeuwenwelp savanne 41048 friends lego friends boomverblijf voor een leeuwenwelp met uitzicht over de savanne.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41048"><img src="images/41048.png" alt="LEGO Friends Leeuwenwelp savanne (41048)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Leeuwenwelp savanne</h3>
+        <div class="card-meta"><span>Friends &middot; 43 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/het-paradijsje-van-schildpad-41041.html" data-theme="Friends" data-search="het paradijsje van schildpad 41041 friends lego friends dierenverblijf voor een schildpad met waterval, palmbomen en bessen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41041"><img src="images/41041.png" alt="LEGO Friends Het paradijsje van Schildpad (41041)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Het paradijsje van Schildpad</h3>
+        <div class="card-meta"><span>Friends &middot; 43 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/de-tempel-van-tijger-41042.html" data-theme="Friends" data-search="de tempel van tijger 41042 friends kleine lego friends tempel voor een tijger, met troon, gouden decoraties en bloemen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41042"><img src="images/41042.png" alt="LEGO Friends De tempel van Tijger (41042)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>De tempel van Tijger</h3>
+        <div class="card-meta"><span>Friends &middot; 42 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/andreas-berghut-41031.html" data-theme="Friends" data-search="andrea&#x27;s berghut 41031 friends lego friends kampeerset met een berghut, kampvuur, een eekhoorn en andrea&#x27;s minipoppetje.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41031"><img src="images/41031.jpg" alt="LEGO Friends Andrea&#x27;s berghut (41031)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Andrea&#x27;s berghut</h3>
+        <div class="card-meta"><span>Friends &middot; 119 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/panda-bamboebos-41049.html" data-theme="Friends" data-search="panda bamboebos 41049 friends lego friends dierenset met een panda, draaibare boomstam, bamboetak en glijbaan.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41049"><img src="images/41049.png" alt="LEGO Friends Panda bamboebos (41049)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Panda bamboebos</h3>
+        <div class="card-meta"><span>Friends &middot; 47 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/popster-opnamestudio-41103.html" data-theme="Friends" data-search="popster opnamestudio 41103 friends lego friends opnamestudio waarin olivia samen met popster livi een nummer opneemt.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#ff6fa5 0%,#7b2ff7 100%)" data-fallback-text="41103"><img src="images/41103.jpg" alt="LEGO Friends Popster Opnamestudio (41103)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Popster Opnamestudio</h3>
+        <div class="card-meta"><span>Friends &middot; 172 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/de-grot-21113.html" data-theme="Minecraft" data-search="de grot 21113 minecraft minecraft-set met steve, een zombie en een spin; bevat een grot met ertsen, lava en dynamiet.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#4c8c2b 0%,#2e5c1a 100%)" data-fallback-text="21113"><img src="images/21113.jpg" alt="LEGO Minecraft De Grot (21113)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>De Grot</h3>
+        <div class="card-meta"><span>Minecraft &middot; 249 st.</span><span class="stars" role="img" aria-label="4 van 5 sterren">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/shell-tankstation-40195.html" data-theme="Shell" data-search="shell tankstation 40195 shell shell v-power promoset (2014): miniatuur shell-tankstation inclusief 1 minifiguur.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40195"><img src="images/40195.jpg" alt="LEGO Shell Shell Tankstation (40195)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Shell Tankstation</h3>
+        <div class="card-meta"><span>Shell &middot; 95 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/shell-tankwagen-40196.html" data-theme="Shell" data-search="shell tankwagen 40196 shell shell v-power promopolybag (2014) met een miniatuur shell-tankwagen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40196"><img src="images/40196.jpg" alt="LEGO Shell Shell Tankwagen (40196)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Shell Tankwagen</h3>
+        <div class="card-meta"><span>Shell &middot; 95 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-512-s-40193.html" data-theme="Shell" data-search="ferrari 512 s 40193 shell shell v-power ferrari-polybag (2014) met miniatuur ferrari 512 s racewagen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40193"><img src="images/40193.jpg" alt="LEGO Shell Ferrari 512 S (40193)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari 512 S</h3>
+        <div class="card-meta"><span>Shell &middot; 51 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-f12-berlinetta-40191.html" data-theme="Shell" data-search="ferrari f12 berlinetta 40191 shell shell v-power ferrari-polybag (2014) met miniatuur ferrari f12 berlinetta.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40191"><img src="images/40191.jpg" alt="LEGO Shell Ferrari F12 Berlinetta (40191)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari F12 Berlinetta</h3>
+        <div class="card-meta"><span>Shell &middot; 46 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-f40-30192.html" data-theme="Shell" data-search="ferrari f40 30192 shell shell v-power ferrari-promoset (2012): miniatuur ferrari f40 met pull-back-functie.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="30192"><img src="images/30192.jpg" alt="LEGO Shell Ferrari F40 (30192)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari F40</h3>
+        <div class="card-meta"><span>Shell &middot; 48 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-f138-40190.html" data-theme="Shell" data-search="ferrari f138 40190 shell shell v-power ferrari-polybag (2014) met miniatuur ferrari f138 formule 1-wagen.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40190"><img src="images/40190.jpg" alt="LEGO Shell Ferrari F138 (40190)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari F138</h3>
+        <div class="card-meta"><span>Shell &middot; 41 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-250-gt-berlinetta-30193.html" data-theme="Shell" data-search="ferrari 250 gt berlinetta 30193 shell shell v-power ferrari-promoset (2012) met miniatuur ferrari 250 gt berlinetta.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="30193"><img src="images/30193.jpg" alt="LEGO Shell Ferrari 250 GT Berlinetta (30193)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari 250 GT Berlinetta</h3>
+        <div class="card-meta"><span>Shell &middot; 25 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-458-italia-30194.html" data-theme="Shell" data-search="ferrari 458 italia 30194 shell shell v-power ferrari-promoset (2012): miniatuur ferrari 458 italia met pull-back-mechanisme.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="30194"><img src="images/30194.jpg" alt="LEGO Shell Ferrari 458 Italia (30194)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari 458 Italia</h3>
+        <div class="card-meta"><span>Shell &middot; 33 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/finish-line-podium-40194.html" data-theme="Shell" data-search="finish line &amp; podium 40194 shell shell v-power ferrari-promopolybag (2014) met finishboog, podium en minifiguur, verkocht bij shell-tankstations.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40194"><img src="images/40194.jpg" alt="LEGO Shell Finish Line &amp; Podium (40194)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Finish Line &amp; Podium</h3>
+        <div class="card-meta"><span>Shell &middot; 64 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
+      <a class="card" href="reviews/ferrari-250-gto-40192.html" data-theme="Shell" data-search="ferrari 250 gto 40192 shell klein lego-polybagje van de ferrari 250 gto, uitgebracht als shell v-power promotieset bij tankstations in 2014.">
+        <div class="card-img" data-fallback-color="linear-gradient(135deg,#c8102e 0%,#f2b705 100%)" data-fallback-text="40192"><img src="images/40192.jpg" alt="LEGO Shell Ferrari 250 GTO (40192)" loading="lazy" onerror="handleImgError(this)"></div>
+        <h3>Ferrari 250 GTO</h3>
+        <div class="card-meta"><span>Shell &middot; 48 st.</span><span class="stars" role="img" aria-label="3 van 5 sterren">&#9733;&#9733;&#9733;&#9734;&#9734;</span></div>
+      </a>
     </div>
-  </div>
-</section>
-
-<section style="background:var(--bg-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="wrap">
-    <h2 class="section-title">Waarom deze site?</h2>
-    <p class="section-lead" style="max-width:760px;">
-      Dit is geen doostekst die overal wordt overgetypt, maar een persoonlijk overzicht van de LEGO-sets die ik
-      zelf heb gebouwd: stukjes, prijs en waar je ze zelf kunt kopen.
-      Via de links op deze site kun je de sets kopen bij bol.com of Amazon — ik ontvang dan mogelijk een kleine commissie,
-      zonder dat jij meer betaalt. Zie de <a href="disclaimer.html">disclaimer</a> voor meer info.
-    </p>
-  </div>
-</section>
-
+    <p class="empty" id="empty" hidden>Geen sets gevonden. Probeer een ander woord.</p>
+  </section>
+</main>
 <footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-cols">
-      <div>
-        <h4>BrickPassie</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="reviews/index.html">Alle reviews</a></li>
-          <li><a href="about.html">Over mij</a></li>
-          <li><a href="disclaimer.html">Disclaimer &amp; affiliate</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bol-banner">
-      <a href="https://partner.bol.com/click/click?p=2&amp;t=url&amp;s=1544332&amp;f=TXL&amp;url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DLego&amp;name=Bol" class="btn btn-bol" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij bol.com</a>
-      <a href="https://amzn.to/4xDA2oW" class="btn btn-amazon" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij Amazon</a>
-    </div>
-    <p>BrickPassie is een onafhankelijk fanproject en niet verbonden aan of gesponsord door The LEGO Group.
-    LEGO&reg; is een handelsmerk van de LEGO Group.</p>
-    <p>&copy; <span id="year"></span> BrickPassie</p>
+  <div class="footer-logo">brickpassie<span class="dot">.</span></div>
+  <div class="footer-banners">
+    <a href="https://partner.bol.com/click/click?p=2&amp;t=url&amp;s=1544332&amp;f=TXL&amp;url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DLego&amp;name=Bol" class="btn btn-bol" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij bol.com</a>
+    <a href="https://amzn.to/4xDA2oW" class="btn btn-amazon" rel="sponsored nofollow" target="_blank">Bekijk alle LEGO-sets bij Amazon</a>
   </div>
+  <p>BrickPassie is een onafhankelijk fanproject en niet verbonden aan of gesponsord door The LEGO Group. LEGO&reg; is een handelsmerk van de LEGO Group.</p>
+  <p>&copy; <span id="year"></span> BrickPassie</p>
 </footer>
-
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 <script src="js/main.js"></script>
 </body>
